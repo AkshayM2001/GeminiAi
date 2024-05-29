@@ -11,6 +11,7 @@ import os
 main.load_dotenv()
 
 # Create your views here.
+
 def home(request):
     chats = Chat.objects.filter(user=request.user)
     if request.method == 'POST':
