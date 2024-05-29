@@ -5,8 +5,10 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from .models import Chat
 from django.utils import timezone
-from dotenv import load_dotenv
+from dotenv import main
 import os
+
+main.load_dotenv()
 
 # Create your views here.
 def home(request):
@@ -62,9 +64,6 @@ def register(request):
 def logout(request):
     auth.logout(request)
     return redirect('login')
-
-def configure():
-    load_dotenv()
 
 
 genai.configure(api_key=os.getenv('api-key1'))
