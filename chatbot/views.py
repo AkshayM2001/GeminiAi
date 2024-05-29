@@ -5,12 +5,8 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from .models import Chat
 from django.utils import timezone
-# from dotenv import load_dotenv
-# import os
-
-# load_dotenv()
-
-# openai.api_key = os.getenv('OPENAI_API_KEY')
+from dotenv import load_dotenv
+import os
 
 # Create your views here.
 def home(request):
@@ -67,8 +63,11 @@ def logout(request):
     auth.logout(request)
     return redirect('login')
 
+def configure():
+    load_dotenv()
 
-genai.configure(api_key="AIzaSyB1NFicLZ0xFmN45fUOXDbsWm-Jfp_Ag7Y")
+
+genai.configure(api_key=os.getenv('api-key1'))
 
 # Set up the model
 generation_config = {
@@ -100,6 +99,8 @@ safety_settings = [
 model = genai.GenerativeModel(model_name="gemini-1.5-pro-latest", generation_config=generation_config, safety_settings=safety_settings)
 
 convo = model.start_chat(history=[])
+
+
 
 
 # print(convo.last.text)
