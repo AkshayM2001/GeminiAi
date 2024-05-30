@@ -13,7 +13,7 @@ main.load_dotenv()
 # Create your views here.
 
 def home(request):
-    chats = Chat.objects.filter(user=request.user)
+    chats = Chat.objects.filter(user=request.user.id)
     if request.method == 'POST':
         message = request.POST.get('message')
         convo.send_message(message)
